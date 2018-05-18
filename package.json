@@ -11,8 +11,9 @@
   "dependencies": {
     "@serverless-chrome/lambda": "^1.0.0-45",
     "aws-serverless-express": "^3.2.0",
-    "claudia": "^4.0.0",
-    "prerender": "^5.4.2",
-    "prerender-node": "^3.1.1"
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "express": "^4.16.3",
+    "prerender": "^5.4.2"
   }
 }
