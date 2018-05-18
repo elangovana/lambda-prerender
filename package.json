@@ -2,13 +2,14 @@
   "name": "serversiderendering-poc",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@serverless-chrome/lambda": "^1.0.0-45",
     "aws-serverless-express": "^3.2.0",
     "claudia": "^4.0.0",
     "prerender": "^5.4.2",
