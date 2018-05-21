@@ -1,5 +1,4 @@
 'use strict'
-'use strict'
 const prerender = require('prerender');
 const prerenderServer = prerender({chromeLocation: "./node_modules/@serverless-chrome/lambda/dist/headless-chromium"});
 const awsServerlessExpress = require('aws-serverless-express')
@@ -12,10 +11,10 @@ const binaryMimeTypes = [
 	'image/png',
 	'image/svg+xml'
 ]
-const app = express();
 const compression = require('compression');
 const bodyParser = require('body-parser');
-
+const express = require('express');
+const app = express();
 
 //This is regular aws serverless express
 const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes);
