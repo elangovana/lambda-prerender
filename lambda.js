@@ -1,6 +1,6 @@
 'use strict'
 const prerender = require('prerender');
-const prerenderServer = prerender({chromeLocation: "./node_modules/@serverless-chrome/lambda/dist/headless-chromium"});
+const prerenderServer = prerender({chromeLocation: "./node_modules/@serverless-chrome/lambda/dist/headless-chromium", 'port':'5000', chromeFlags: [ '--no-sandbox', '--headless', '--disable-gpu', '--remote-debugging-port=9222', '--hide-scrollbars' ]});
 const awsServerlessExpress = require('aws-serverless-express')
 const binaryMimeTypes = [
 	'application/octet-stream',
