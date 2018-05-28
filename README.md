@@ -10,13 +10,13 @@
 ## As a lambda service
 a) Build Package..
 
-    - npm install
+    > npm install
 
-    - zip -r lambda_prender.zip .
+    > zip -r lambda_prender.zip .
 
 b) Upload Package to S3
 
-c) Lambda config
+c) Lambda config or use the cloudformation template
 
    - handler : lambda.handler
 
@@ -29,7 +29,7 @@ d) Sample test input for lambda
 
 This sample prerenders the reactapp page https://ahfarmer.github.io/calculator/
 
-    -
+    
       {
       "url": "https://ahfarmer.github.io/calculator/"
       }
