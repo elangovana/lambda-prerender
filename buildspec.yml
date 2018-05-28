@@ -16,7 +16,9 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - zip -r lambda_prender.zip src/*
+      - cd src
+      - zip -r ../lambda_prender.zip .
 artifacts:
   files:
     - lambda_prender.zip
+    - lambda_prender_cloudformation.cf.yaml
