@@ -1,12 +1,13 @@
-Sample Server Side Rendering using prerender.io
+# Sample Server Side Rendering using prerender.io
 
-1) As an independent Server
+## To run on your local machine ( OsX)
+(Pre requisites require chrome installed)
+
 - npm install
-- node server.js
-# Pre render a sample react app
+- node server.js 
 - curl http://localhost:3000/render?url=https://ahfarmer.github.io/calculator/
 
-2) As a lambda service
+## As a lambda service
 a) Build Package..
  - npm install
  - zip -r lambda_prender.zip .
