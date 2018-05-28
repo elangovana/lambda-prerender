@@ -1,0 +1,123 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Lambda Prerender'
+
+Parameters:
+  LambdaZipS3Bucket:
+    Default: s3bucket
+    Description: The s3 bucket  that contains the package
+    Type: String
+  LambdaZipS3Key:
+    Default: prerender.zip
+    Description: The s3 bucket key that contains the package
+    Type: String
+  LambdaFunctionName:
+    Default: prerenderpoc
+    Description: Name of the lambda function to use
+    Type: String
+    AllowedPattern: ^[A-Za-z0-9]*$
+  Customer:
+    Description: is used as Customer tag value for all resources
+    Type: String
+    Default: Customer
+    AllowedPattern: ^[A-Za-z0-9]*$
+    ConstraintDescription: must contain only alphanumeric characters and numbers.
+    MaxLength: 20
+    MinLength: 1
+  CustomerProject:
+    Description: is used as Customer project tag value for all resources
+    Type: String
+    Default: CustomerProject
+    AllowedPattern: ^[A-Za-z0-9]*$
+    ConstraintDescription: must contain only alphanumeric characters and numbers.
+    MaxLength: 20
+    MinLength: 1
+  Environment:
+    Description: Environment to deploy. Use staging for limited resources and no alerts.
+    Type: String
+    Default: Staging
+    AllowedValues:
+    - Staging
+    - Production
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+    - Label:
+        default: Tagging and billing
+      Parameters:
+      - Customer
+      - CustomerProject
+    - Label:
+        default: Choose Branch and Environment
+      Parameters:
+      - Environment
+      - BranchName
+
+
+
+Resources:
+  lambdafunction:
+    Type: "AWS::Lambda::Function"
+    DependsOn : "LambdaRole"
+    Properties:
+      Code:
+        S3Bucket: {"Ref": LambdaZipS3Bucket}
+        S3Key: {"Ref": LambdaZipS3Key}
+
+      Description: "Poc Prerenders a give url , e.g a reactjs app"
+      FunctionName:  {"Ref" : "LambdaFunctionName" }
+      Handler: "lambda.handler"
+      MemorySize: 256
+      Role:
+        Fn::GetAtt:
+          - "LambdaRole"
+          - "Arn"
+      Runtime: nodejs8.10
+      Timeout: 10
+      Tags:
+        - Key: Customer
+          Value: {"Ref" : "Customer"}
+        - Key: CustomerProject
+          Value: {"Ref" : "CustomerProject"}
+
+  LambdaRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        -
+          PolicyName: "root"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action:
+                  -  s3:GetObject
+                Resource:
+                  - Fn::Join:
+                    - ""
+                    - - "arn:aws:s3:::"
+                      - Fn::Join:
+                        - "/"
+                        - - {"Ref": LambdaZipS3Bucket}
+                          - {"Ref": LambdaZipS3Key}
+      RoleName:
+        Fn::Join:
+          - "LambdaExecutionRole_"
+          - - {"Ref" : LambdaFunctionName }
+
+
+# Outputs:
+#   PathToMasterStackFile
