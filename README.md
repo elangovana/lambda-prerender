@@ -21,16 +21,16 @@
 
 3. Lambda config or use the cloudformation template
 
-       ..* handler : lambda.handler
+..* Handler : lambda.handler
 
-       ..* Runtime : Nodejs 8.0
+..* Runtime : Nodejs 8.0
 
-       ..*  Memory set at least 256 MB
+..* Memory  : Set at least 256 MB
 
 
 4. Sample test input for lambda
 
-This sample prerenders the reactapp page https://ahfarmer.github.io/calculator/
+    This sample prerenders the reactapp page https://ahfarmer.github.io/calculator/
 
     
       {
