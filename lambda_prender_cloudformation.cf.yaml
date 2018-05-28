@@ -97,7 +97,7 @@ Resources:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
       Policies:
         -
-          PolicyName: "root"
+          PolicyName: "S3GetCodeObjectPolicy"
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -115,8 +115,9 @@ Resources:
                           - {"Ref": LambdaZipS3Key}
       RoleName:
         Fn::Join:
-          - "LambdaExecutionRole_"
-          - - {"Ref" : LambdaFunctionName }
+          - ""
+            - - "LambdaExecutionRole_"
+              - {"Ref" : LambdaFunctionName }
 
 
 # Outputs:
