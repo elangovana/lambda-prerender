@@ -16,7 +16,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - zip -r lambda_prender.zip .
+      - zip -r lambda_prender.zip src/*
 artifacts:
   files:
     - lambda_prender.zip
