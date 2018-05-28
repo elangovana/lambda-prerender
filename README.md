@@ -3,29 +3,32 @@
 ## To run on your local machine ( OsX)
 (Pre requisites require chrome installed)
 
-    - npm install
-    - node server.js
-    - curl http://localhost:3000/render?url=https://ahfarmer.github.io/calculator/
+    > cd src
+    > npm install
+    > node server.js
+    > curl http://localhost:3000/render?url=https://ahfarmer.github.io/calculator/
 
 ## As a lambda service
-a) Build Package..
+1. Build Package..
+    
+        > cd src
 
-    > npm install
+        > npm install
 
-    > zip -r lambda_prender.zip .
+        > zip -r lambda_prender.zip .
 
-b) Upload Package to S3
+2. Upload Package to S3
 
-c) Lambda config or use the cloudformation template
+3. Lambda config or use the cloudformation template
 
-   - handler : lambda.handler
+       ..* handler : lambda.handler
 
-   - Runtime : Nodejs 8.0
+       ..* Runtime : Nodejs 8.0
 
-   - Memory set at least 256 MB
+       ..*  Memory set at least 256 MB
 
 
-d) Sample test input for lambda
+4. Sample test input for lambda
 
 This sample prerenders the reactapp page https://ahfarmer.github.io/calculator/
 
