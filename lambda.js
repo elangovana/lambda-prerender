@@ -55,7 +55,7 @@ exports.handler = (event, context, callback) => {
 	        body: data,
 	        headers: {}
 	    }
-			context.succeeded( successResponse);
+			context.succeed( successResponse);
 	  });
 
 	})
@@ -68,7 +68,7 @@ exports.handler = (event, context, callback) => {
 				body: err.message,
 				headers: {}
 		}
-		context.succeeded( sucessFailed);
+		context.succeed( sucessFailed);
 	});
 
 }
