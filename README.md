@@ -4,7 +4,7 @@
 (Pre requisites require chrome installed)
 
     - npm install
-    - node server.js 
+    - node server.js
     - curl http://localhost:3000/render?url=https://ahfarmer.github.io/calculator/
 
 ## As a lambda service
@@ -28,6 +28,8 @@ c) Lambda config
 d) Sample test input for lambda
 
 This sample prerenders the reactapp page https://ahfarmer.github.io/calculator/
-{
-  "url": "https://ahfarmer.github.io/calculator/"
-}
+
+    -
+      {
+      "url": "https://ahfarmer.github.io/calculator/"
+      }
