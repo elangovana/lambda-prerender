@@ -25,7 +25,7 @@ zip -r lambda_prender.zip .
 ```
 2. Upload Package to S3
 
-3. Lambda config or use the cloudformation template
+3. Lambda config or use the cloudformation template https://github.com/elangovana/lambda-prerender/blob/master/lambda_prender_cloudformation.cf.yaml
     * Handler : lambda.handler
     * Runtime : Nodejs 8.0
     * Memory  : Set at least 256 MB
