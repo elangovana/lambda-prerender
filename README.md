@@ -3,6 +3,7 @@
 ## To run on your local machine ( OsX)
 (Pre requisites require chrome installed)
 
+    > git clone https://github.com/elangovana/lambda-prerender/
     > cd src
     > npm install
     > node server.js
@@ -10,11 +11,10 @@
 
 ## As a lambda service
 1. Build Package..
-    
+        
+        > git clone https://github.com/elangovana/lambda-prerender/
         > cd src
-
         > npm install
-
         > zip -r lambda_prender.zip .
 
 2. Upload Package to S3
