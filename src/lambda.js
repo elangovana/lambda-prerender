@@ -23,50 +23,24 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const http= require('http');
 const format = require('string-format')
 prerenderServer.start();
+setup_appserver();
 
 //This is regular aws serverless express
-exports.handler = (event, context, callback) => {
-	// app.disable('x-powered-by');
-	// app.use(compression());
-	// app.get('*', prerenderServer.onRequest);
-	// app.post('*', bodyParser.json({ type: () => true }), prerenderServer.onRequest);
+const server = awsServerlessExpress.createServer(app)
+exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);
 
-	const url = event["url"];
 
-  const prerender_url = format('http://localhost:{}/render?url={}', prerenderServerPort, url);
-  http.get(prerender_url, (resp) => {
-	  let data = '';
+// Set up the express app server
+function setup_appserver(){
 
-	  // A chunk of data has been recieved.
-	  resp.on('data', (chunk) => {
-	    data += chunk;
-	  });
+	app.disable('x-powered-by');
+	app.use(compression());
 
-	  // The whole response has been received. Print out the result.
-	  resp.on('end', () => {
-			console.log("Test Complete success.." );
-			const successResponse = {
-	        statusCode: 200,
-          body: data,
-	        headers: {}
-	    }
-			context.succeed( successResponse);
-	  });
+	app.get('*', server.onRequest);
 
-	})
-	.on("error", (err) => {
-  	console.log( "Error: " + err.message);
-		console.log("Test Complete with error.." );
-		callback("Error: " + err.message, data)
-		const sucessFailed = {
-				statusCode: 502, // "DNS resolution, TCP level errors, or actual HTTP parse errors" - https://nodejs.org/api/http.html#http_http_request_options_callback
-				body: err.message,
-				headers: {}
-		}
-		context.succeed( sucessFailed);
-	});
+	//dont check content-type and just always try to parse body as json
+	app.post('*', bodyParser.json({ type: () => true }), prerenderServer.onRequest);
 
 }
