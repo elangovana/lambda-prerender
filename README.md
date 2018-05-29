@@ -1,10 +1,10 @@
 # Serverside pre-rendering with prerender.io on AWS Lambda
-## Prerequisites
-* NodeJs 8.11 https://nodejs.org/en/download/
+
 
 ## To run on your local machine ( OsX)
 #### Prerequisites 
 * Chrome Version > 59
+* NodeJs 8.11 https://nodejs.org/en/download/
 
 #### Run
 ```console
