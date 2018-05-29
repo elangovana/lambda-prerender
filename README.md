@@ -2,13 +2,13 @@
 
 ## To run on your local machine ( OsX)
 (Pre requisites require chrome installed)
-
-    > git clone https://github.com/elangovana/lambda-prerender/
-    > cd src
-    > npm install
-    > node server.js
-    > curl http://localhost:3000/render?url=https://ahfarmer.github.io/calculator/
-
+```console
+git clone https://github.com/elangovana/lambda-prerender/
+cd src
+npm install
+node server.js
+curl http://localhost:3000/render?url=https://ahfarmer.github.io/calculator/
+```
 ## As a lambda service
 1. Build Package..
         
