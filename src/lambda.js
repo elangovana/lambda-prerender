@@ -1,6 +1,7 @@
 'use strict'
 const prerender = require('prerender');
-const prerenderServer = prerender({chromeLocation: "./node_modules/@serverless-chrome/lambda/dist/headless-chromium", 'port':'5000', chromeFlags: ['--headless', ' --crash-dumps-dir=/tmp', '--no-sandbox', '--disable-gpu', '--window-size=1280,1696',
+const prerenderServerPort = '5000'
+const prerenderServer = prerender({chromeLocation: "./node_modules/@serverless-chrome/lambda/dist/headless-chromium", 'port':prerenderServerPort, chromeFlags: ['--headless', ' --crash-dumps-dir=/tmp', '--no-sandbox', '--disable-gpu', '--window-size=1280,1696',
                    '--hide-scrollbars'
             , '--homedir=/tmp'
             , '--single-process'
@@ -22,23 +23,21 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
+const http= require('http');
+const format = require('string-format')
 prerenderServer.start();
 
 //This is regular aws serverless express
 exports.handler = (event, context, callback) => {
-	app.disable('x-powered-by');
-	app.use(compression());
-	app.get('*', prerenderServer.onRequest);
-	app.post('*', bodyParser.json({ type: () => true }), prerenderServer.onRequest);
-	console.log("About to start prerenderServer .. aka Headless chrome");
+	// app.disable('x-powered-by');
+	// app.use(compression());
+	// app.get('*', prerenderServer.onRequest);
+	// app.post('*', bodyParser.json({ type: () => true }), prerenderServer.onRequest);
 
-	console.log("Started prerenderServer ..");
-	console.log("Testing if the prerender is working..");
 	const url = event["url"];
 
-	const http= require('http');
-
-  http.get('http://localhost:5000/render?url='+url, (resp) => {
+  const prerender_url = 'http://localhost:{}/render?url={}'.format(prerenderServerPort, url)
+  http.get(prerender_url, (resp) => {
 	  let data = '';
 
 	  // A chunk of data has been recieved.
@@ -48,11 +47,10 @@ exports.handler = (event, context, callback) => {
 
 	  // The whole response has been received. Print out the result.
 	  resp.on('end', () => {
-	    console.log(data);
 			console.log("Test Complete success.." );
 			const successResponse = {
-	        statusCode: 200, // "DNS resolution, TCP level errors, or actual HTTP parse errors" - https://nodejs.org/api/http.html#http_http_request_options_callback
-	        body: data,
+	        statusCode: 200,
+          body: data,
 	        headers: {}
 	    }
 			context.succeed( successResponse);
