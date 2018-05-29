@@ -38,7 +38,7 @@ function setup_appserver(){
 	app.disable('x-powered-by');
 	app.use(compression());
 
-	app.get('*', server.onRequest);
+	app.get('*', prerenderServer.onRequest);
 
 	//dont check content-type and just always try to parse body as json
 	app.post('*', bodyParser.json({ type: () => true }), prerenderServer.onRequest);
