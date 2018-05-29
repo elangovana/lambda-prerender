@@ -1,4 +1,4 @@
-# Sample serverside pre-rendering using prerender.io on AWS Lambda
+# Serverside pre-rendering using prerender.io on AWS Lambda
 ## Prerequisites
 * NodeJs 8.11 https://nodejs.org/en/download/
 
