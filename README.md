@@ -34,7 +34,8 @@ zip -r lambda_prender.zip .
 
     This sample prerenders the reactapp page https://ahfarmer.github.io/calculator/
 
-    
+    ```json
       {
       "url": "https://ahfarmer.github.io/calculator/"
       }
+    ```
