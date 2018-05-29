@@ -20,9 +20,9 @@
 2. Upload Package to S3
 
 3. Lambda config or use the cloudformation template
-..* Handler : lambda.handler
-..* Runtime : Nodejs 8.0
-..* Memory  : Set at least 256 MB
+    ..* Handler : lambda.handler
+    ..* Runtime : Nodejs 8.0
+    ..* Memory  : Set at least 256 MB
 
 4. Sample test input for lambda
 
