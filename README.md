@@ -1,7 +1,9 @@
 # Sample Server Side Rendering using prerender.io
+## Prerequisites
+* NodeJs 8.11 https://nodejs.org/en/download/
 
 ## To run on your local machine ( OsX)
-(Pre requisites require chrome installed)
+(Prerequisites require chrome installed)
 ```console
 git clone https://github.com/elangovana/lambda-prerender/
 cd src
