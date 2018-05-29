@@ -1,5 +1,5 @@
 # Serverside pre-rendering with prerender.io on AWS Lambda
-This is an example code for how to run prerender.io https://prerender.io with headless chrome to run pre-render a webpage on aws lambda
+This is an example code for pre-rendering a webpage on AWS Lambda using  prerender.io https://prerender.io with headless chrome.
 
 ## To run on your local machine ( OsX)
 #### Prerequisites 
