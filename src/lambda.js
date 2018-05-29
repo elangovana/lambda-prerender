@@ -36,7 +36,7 @@ exports.handler = (event, context, callback) => {
 
 	const url = event["url"];
 
-  const prerender_url = 'http://localhost:{}/render?url={}'.format(prerenderServerPort, url)
+  const prerender_url = format('http://localhost:{}/render?url={}', prerenderServerPort, url);
   http.get(prerender_url, (resp) => {
 	  let data = '';
 
