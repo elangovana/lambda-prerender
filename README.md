@@ -3,7 +3,10 @@
 * NodeJs 8.11 https://nodejs.org/en/download/
 
 ## To run on your local machine ( OsX)
-* Prerequisites require chrome installed
+#### Prerequisites 
+* Chrome Version > 59
+
+#### Run
 ```console
 git clone https://github.com/elangovana/lambda-prerender/
 cd src
